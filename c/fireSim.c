@@ -5,9 +5,9 @@
         ./fireSim 1arg 2arg 3arg 4arg 5arg 6arg
 
     1arg: Rows/Cols
-    2arg: windSpeed [m/s]
-    3arg: windDir   [º from North]
-    4arg: moistures [fraction]
+    2arg: moistures [fraction]
+    3arg: windSpeed [m/s]
+    4arg: windDir   [º from North]
     5arg: slope file name
     6arg: aspect file name
 
