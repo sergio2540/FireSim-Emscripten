@@ -1,0 +1,6 @@
+{
+	"argv" : ["100","_.json", "malcataAspect_100.grass" ,"malcataSlope_100.grass"],
+	"input" : ["malcataAspect_100.grass", "malcataSlope_100.grass"],	
+	"output" : ["ign.Map","aspect.Map","slope.Map"]
+	
+}
