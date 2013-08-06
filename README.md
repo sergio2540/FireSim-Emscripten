@@ -3,6 +3,7 @@ FireSim-Emscripten
 
 ##Requirements:
   * [Emscripten](https://github.com/kripken/emscripten/wiki/Tutorial)
+  * [program-editor](https://github.com/crowdprocess/program-editor)
 
 
 ##Usage:
@@ -19,5 +20,7 @@ FireSim-Emscripten
 ####Compile js code: 
   `make cp EMCC=path/to/emscripten/emcc`
 
-####Run js with [program-editor](https://github.com/sergio2540/program-editor): 
+####Run js with [program-editor](https://github.com/crowdprocess/program-editor): 
    `make run-editor`
+
+###See:[Makefile](https://github.com/sergio2540/FireSim-Emscripten/blob/master/Makefile)
