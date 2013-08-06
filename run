@@ -1,3 +1,0 @@
-#! /bin/sh
-
-cat data.json | crowdprocess io -p fireSim.js > results.json   && node processResults.js
