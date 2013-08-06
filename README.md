@@ -8,7 +8,7 @@ FireSim-Emscripten
 ##Usage:
 
 ####Compile c code: 
-  `make firesim CC=gcc`
+  `make c CC=gcc`
  
 ####Run c code: 
    
@@ -17,10 +17,7 @@ FireSim-Emscripten
   `make run-c ARGV = 100 10 0.7 135 malcataAspect_100.grass malcataSlope_100.grass`
 
 ####Compile js code: 
-  `make firesim.js EMCC=path/to/emscripten/emcc`
+  `make cp EMCC=path/to/emscripten/emcc`
 
-####Run js in Node:
- `make run-js`
- 
-####Run js in crowdprocess: 
-  `make run-io` or `make run-editor`
+####Run js with [program-editor](https://github.com/sergio2540/program-editor): 
+   `make run-editor`
