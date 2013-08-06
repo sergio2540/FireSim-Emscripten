@@ -15,7 +15,7 @@ FireSim-Emscripten
    
   `make run-c`
    or 
-  `make run-c ARGV = 100 10 0.7 135 malcataAspect_100.grass malcataSlope_100.grass`
+  `make run-c ARGV=100 10 0.7 135 malcataAspect_100.grass malcataSlope_100.grass`
 
 ####Compile js code: 
   `make cp EMCC=path/to/emscripten/emcc`
