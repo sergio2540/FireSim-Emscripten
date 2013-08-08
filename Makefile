@@ -1,9 +1,6 @@
 #Directory with c code
 C_DIR= ./c
 
-#Directory with js code
-JS_DIR= ./js
-
 #Directory with js code, data.json (data/), 
 #script to generate program.js (pre/)
 #and script for post processing (post/)
@@ -37,7 +34,7 @@ EMCCFLAGS=-O2
 
 #Various compiling-to-JS parameters.
 #See https://github.com/kripken/emscripten/blob/master/src/settings.js
-SETTINGS= -s BUILD_AS_WORKER=1 -s ASMJS=1 -s INVOKE_RUN=.0
+SETTINGS= -s ASMJS=1 -s INVOKE_RUN=0
 
 #Firesim arguments  
 
@@ -74,7 +71,7 @@ DATA= ./data/data.json
 
 RESULTS_DIR= $(CROWDPROCESS_DIR)/results
 
-all: c js cp
+all: c cp
 
 c: 
 	mkdir -p $(C_DIR)/build/;
@@ -87,20 +84,15 @@ run-c:
 	./$(EXEC) $(ARGV); \
 	rm -f $(C_DIR)/build/*.grass
 
-js:
-	mkdir -p $(JS_DIR)/build; \
-	cd $(C_DIR); \
-	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(JS_DIR)/build/$(EXEC).js 
- 
-run-js:
-	cd $(JS_DIR)/build/ && node ./$(EXEC).js $(ARGV)
-
-cp: js
+cp: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
 	cp -r $(MAPS) $(CROWDPROCESS_DIR)/pre/ && \
-	cd $(CROWDPROCESS_DIR)/pre && \
-	node generateProgram.js ../../$(JS_DIR)/build/$(EXEC).js ../build/$(EXEC).js && \
-	rm -f ./*.grass 
+	cd $(C_DIR) && \
+	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/$(EXEC).js && \
+	cd ../$(CROWDPROCESS_DIR)/pre && \
+	./gencp --io ./io.json --emscriptencode ./$(EXEC).js --destiny ../build/$(EXEC).js && \
+	rm -f ./*.grass
+
 
 run-editor:
 	@program-editor -p $(CROWDPROCESS_DIR)/build/$(EXEC).js
@@ -123,4 +115,4 @@ io:
 
 
 
-.PHONY: all c run-c js run-js cp run-io run-editor clean process-results io
+.PHONY: all c run-c cp run-io run-editor clean process-results io
