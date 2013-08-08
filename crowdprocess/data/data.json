@@ -1,1 +1,25 @@
-[[ 5, 1, 135 ], [ 5, 1, 135 ], [ 5, 1, 135 ]]
+[{ 
+  "input" : {
+		"argv" : [ "5", "1", "135" ]
+		
+},
+"output": {
+	  "files" : [{
+		"dirname" : "/",
+		"basename" : "ign.Map"
+	  }]
+	}
+},
+{ 
+  "input" : {
+		"argv" : [ "5", "1", "135" ]
+		
+},
+"output": {
+	  "files" : [{
+		"dirname" : "/",
+		"basename" : "ign.Map"
+	  }]
+	}
+}]
+
