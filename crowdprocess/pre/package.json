@@ -18,7 +18,11 @@
     "glob": "~3.2.6",
     "split": "~0.2.10",
     "async": "~0.2.9",
-    "through": "~2.3.4"
+    "through": "~2.3.4",
+    "JSONStream": "~0.6.4",
+    "event-stream": "~3.0.16",
+    "levelup": "~0.13.0",
+    "leveldown": "~0.7.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

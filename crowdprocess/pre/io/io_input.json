@@ -1,0 +1,25 @@
+{ 
+
+	  "input" : { 
+		      "argv" : [{  "arg" : "100",
+				   "pos" : "0"
+				}, 
+				{ 
+				  "arg" : "malcataSlope_100.grass",
+				  "pos" :  "4"
+                                },
+				{ 
+                                  "arg" : "malcataAspect_100.grass",
+				  "pos" : "5"
+				}],
+		      "stdin" : "data.input.stdin"
+		    },
+	  "output" : {
+			"files" : [{
+				    "name" : "/ign.Map"
+				  }],
+			"stdout" : "data.output.stdout",
+			"stderr" : "data.output.stderr"
+		}
+}
+

@@ -1,0 +1,30 @@
+{ 
+
+	  "input" : { 
+		      "argv"  : ["100", "data.input.argv", "malcataSlope_100.grass","malcataAspect_100.grass"],
+		      "files" : [ {
+				    "decompress" : true,
+				    "dirname" : ".",
+				    "basename" : "malcataSlope_100.grass",
+				    "content" : "../../maps/malcataSlope_100.grass"
+				  },
+				  {
+				    "decompress" : true,
+				    "dirname" : ".",
+				    "basename" : "malcataAspect_100.grass",
+				    "content" : "../../maps/malcataAspect_100.grass"
+				  }],
+
+		      "stdin" : "data.input.stdin"
+		    },
+	  "output" : {
+			"files" : [{
+				    "compress" : true,
+				    "dirname" : ".",
+				    "basename" : "ign.Map"
+				  }],
+			"stdout" : "data.output.stdout",
+			"stderr" : "data.output.stderr"
+		}
+}
+
