@@ -10,7 +10,7 @@ CROWDPROCESS_DIR= ./crowdprocess
 CC=
 
 #Flags to C compiler
-CFLAGS=-O2 
+CFLAGS=-O0 
 
 #Libs: Math library (-lm)
 LIBS= -lm
@@ -25,7 +25,7 @@ EXEC=firesim
 #EMCC=path/to/emscripten/emcc
 #Example:
 #EMCC= /home/sergio/emscripten/emcc 
-EMCC=
+EMCC=/home/sergio/emscripten/emcc 
 
 #Flags for emscripten C compiler
 #-O<optimization level>
@@ -86,12 +86,44 @@ run-c:
 
 cp: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
-	cp -r $(MAPS) $(CROWDPROCESS_DIR)/pre/ && \
+	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
-	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/$(EXEC).js && \
-	cd ../$(CROWDPROCESS_DIR)/pre && \
-	./gencp --io ./io.json --emscriptencode ./$(EXEC).js --destiny ../build/$(EXEC).js && \
-	rm -f ./*.grass
+	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
+	cd $(CROWDPROCESS_DIR)/pre/ && \
+	cat ./data/pre_data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./template/template.js | ./bin/gencpp --io ./io/io.json --compress ./lib/LZString.js --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+
+cp-in: 
+	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/pre/build
+	cd $(C_DIR) && \
+	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
+	cd $(CROWDPROCESS_DIR)/pre/ && \
+	cat ./data/pre_data_input.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./template/template.js | ./bin/gencpp --io ./io/io_input.json --compress ./lib/LZString.js --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+
+#!!!!not tested!!!!
+cp-out: 
+	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/pre/build
+	cd $(C_DIR) && \
+	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
+	cd $(CROWDPROCESS_DIR)/pre/ && \
+	cat ./data/pre_data_output.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./template/template.js | ./bin/gencpp --io ./io/io_output.json --compress ./lib/LZString.js --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+
+#!!!!not tested!!!!
+cp-compress: 
+	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/pre/build
+	cd $(C_DIR) && \
+	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
+	cd $(CROWDPROCESS_DIR)/pre/ && \
+	cat ./data/pre_data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./template/template.js | ./bin/gencpp --io ./io/io_compress.json --compress ./lib/LZString.jsl --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+
+
+
 
 
 run-editor:
@@ -100,6 +132,7 @@ clean:
 	rm -rf $(C_DIR)/build
 	rm -rf $(JS_DIR)/build
 	rm -rf $(CROWDPROCESS_DIR)/build
+	rm -rf $(CROWDPROCESS_DIR)/pre/build
 
 
 #!!!!not tested!!!!
