@@ -45,6 +45,10 @@ FireSim compiled to JavaScript.
 ###Generate data.json:
 
 ######See: [Explain crowdprocess/pre/data](https://gist.github.com/sergio2540/b5b45f9e13e533ea056d)
+
+###Generate program.js:
+
+######See: [Explain crowdprocess/view/data](https://gist.github.com/sergio2540/fac873fccde43bb98b44)
        
 ###Run js with [program-editor](https://github.com/crowdprocess/program-editor): 
 
