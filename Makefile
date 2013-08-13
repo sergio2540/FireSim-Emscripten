@@ -7,7 +7,7 @@ C_DIR= ./c
 CROWDPROCESS_DIR= ./crowdprocess
 
 #C compiler
-CC=
+CC=cc
 
 #Flags to C compiler
 CFLAGS=-O0 
@@ -73,34 +73,38 @@ RESULTS_DIR= $(CROWDPROCESS_DIR)/results
 
 all: c cp
 
+#tested:ok
 c: 
 	mkdir -p $(C_DIR)/build/;
-	cd $(C_DIR); \
+	cd $(C_DIR) && \
 	$(CC) $(CFLAGS) $(SOURCES) -o build/$(EXEC) $(LIBS)
-	
+
+#tested:ok	
 run-c:
-	cp -r $(MAPS) $(C_DIR)/build; \
-	cd $(C_DIR)/build; \
-	./$(EXEC) $(ARGV); \
+	cp -r $(MAPS) $(C_DIR)/build; 
+	cd $(C_DIR)/build && \
+	./$(EXEC) $(ARGV) && \
 	rm -f $(C_DIR)/build/*.grass
 
+#tested:ok
 cp: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
 	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/pre_data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./template/template.js | ./bin/gencpp --io ./io/io.json --compress ./lib/LZString.js --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+	cat ./data/data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
+#tested:ok
 cp-in: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
 	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/pre_data_input.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./template/template.js | ./bin/gencpp --io ./io/io_input.json --compress ./lib/LZString.js --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+	cat ./data/data_input.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view_input.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 #!!!!not tested!!!!
 cp-out: 
@@ -109,8 +113,8 @@ cp-out:
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/pre_data_output.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./template/template.js | ./bin/gencpp --io ./io/io_output.json --compress ./lib/LZString.js --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+	cat ./data/data_output.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view_output.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 #!!!!not tested!!!!
 cp-compress: 
@@ -119,8 +123,8 @@ cp-compress:
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/pre_data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./template/template.js | ./bin/gencpp --io ./io/io_compress.json --compress ./lib/LZString.jsl --emscriptencode ./build/$(EXEC).js > ../build/$(EXEC).js
+	cat ./data/data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view_compress.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 
 
