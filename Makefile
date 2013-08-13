@@ -89,6 +89,7 @@ run-c:
 #tested:ok
 cp: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/data
 	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
@@ -99,6 +100,7 @@ cp:
 #tested:ok
 cp-in: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/data
 	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
@@ -109,6 +111,7 @@ cp-in:
 #!!!!not tested!!!!
 cp-out: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/data
 	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
@@ -119,6 +122,7 @@ cp-out:
 #!!!!not tested!!!!
 cp-compress: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
+	mkdir -p $(CROWDPROCESS_DIR)/data
 	mkdir -p $(CROWDPROCESS_DIR)/pre/build
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
