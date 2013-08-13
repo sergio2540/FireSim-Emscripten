@@ -106,7 +106,7 @@ cp-in:
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
 	cat ./data/data_input.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view_input.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
+	cat ./view/view_output.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 #!!!!not tested!!!!
 cp-out: 
@@ -117,7 +117,7 @@ cp-out:
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
 	cat ./data/data_output.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view_output.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
+	cat ./view/view_input.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 #!!!!not tested!!!!
 cp-compress: 
