@@ -23,7 +23,8 @@
     "event-stream": "~3.0.16",
     "levelup": "~0.13.0",
     "leveldown": "~0.7.0",
-    "mustache": "~0.7.2"
+    "mustache": "~0.7.2",
+    "crowdprocess-cli": "~0.7.8"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
