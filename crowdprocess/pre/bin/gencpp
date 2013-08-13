@@ -1,199 +1,22 @@
 #!/usr/bin/env node
 
-var glob = require('glob');
-
-var fs = require('fs');
+var cppstream = require('../lib/cppstream')
 var program = require('commander');
-var split = require('split');
-var through = require('through');
-var path = require('path');
 
-var async = require('async');
+//CLI
 
-var LZString = require('../lib/LZString');
-
-
+//STDIN view.json
+//STDOUT cp code
 
 program.version('0.0.0')
-        .usage('[options] <file ...>')
-	.option('-i, --io <data.json>','data.json file')
-	.option('-c, --compress <compress.js>','compress.js file')
-	.option('-emsc, --emscriptencode <emscriptecode.js>','compiled js from c')
-        .parse(process.argv);
-        
-//replace io por fix
-
-var io = path.normalize(program.io);
+    .usage('[options] <file ...>')
+	.option('-c, --compress <compress.js>','compress code file')
+	.option('-t, --template <template.mustache>','mustache template')
+    .parse(process.argv);
 
 
-try {
-    var ioJSON = fs.readFileSync(io);
-} catch(e){
+var template = program.template;
+var compress = program.compress;
 
-
-    //TODO: melhorar as mensagens de erro
-    console.error(e);
-    process.exit(1);
-}
-
-try {
-    var io = JSON.parse(ioJSON);
-}catch(e){
-    console.error("Failed: var io = JSON.parse("+ioJSON+");");
-    console.error("Error parsing io.json");
-    process.exit(1);
-}
-
-//console.log(__dirname);
-
-
-//STDIN: template
-//STDOUT: cp code
-
-//V1
-
-process.stdin.pipe(split())
-	.pipe(through(write))
-	.pipe(process.stdout);
-
-/*
-var q = async.queue(function (task, callback) {
-    console.log('hello ' + task.name);
-    callback();
-}, 5);
-
-
-var self;
-
-q.drain = function(){
-	self.queue(
-	console.log("done");
-}
-*/
-
-
-
-function write(line){	
-	//self = this;
-
-	if(line.indexOf('{{{ARGS}}}') !== -1){
-			/*
-			q.push({name: argv},function(err){
-				console.log("argv: finish");			
-			});
-				*/
-			this.queue(argv() + '\n');	
-	}
-	else  if (line.indexOf('{{{COMPRESS}}}') !== -1){
-		this.queue(compress()+ '\n');
-	}
-	else  if (line.indexOf('{{{FILES_IN}}}') !== -1){
-		this.queue(files_in()+ '\n');
-	}
-	else if (line.indexOf('{{{FILES_OUT}}}') !== -1){
-		this.queue(files_out() + '\n');
-	}
-	else if (line.indexOf('{{{GENERATED_CODE}}}') !== -1){
-		this.queue(generated_code() + '\n');
-
-	}else {
-		this.queue(line+'\n');
-	}
-	
-	
-
-}
-
-function compress(){
-
-	var compressCode = fs.readFileSync(path.resolve(program.compress));
-	return compressCode;
-}
-
-
-function argv(){
-	//ARGV
-	var arguments = (io['input'] && io['input']['argv']) || [];
-	var args = [];
-	arguments.forEach(function (arg) {
-		
-			args.push("Module['arguments']["+arg.pos+"] = '" + arg.arg + "';");
-		
-	    
-	});
-
-	return args.join('\n');
-}
-
-
-function files_out(){
-
-	var output = io['output']  || {};
-	var files = output.files || [];
-
-	var out = [];
-	
-	/*
-	out.push("if((data.output) && (data.output.files)) { \
-				data.output.files.forEach(function(file) { \
-					Module['return']['files'][file.basename] = intArrayToString(FS.root.contents[file.dirname + file.basename].contents) \
-				}); \
-			}");
-
-	
-	*/
-
-	//output = output.files.filter(function(file) { return file != "data.output.files"});
-	
-	files.forEach(function(file) { 
-		var toPush = ((file.compress) || (file.decompress)) ? "Module['return']['output']['files']['" + path.basename(file.name) + "'] = Module['compress'](intArrayToString(FS.root.contents['"  + path.basename(file.name) + "'].contents))" : "Module['return']['output']['files']['" + path.basename(file.name) + "'] = intArrayToString(FS.root.contents['" + path.basename(file.name) + "'].contents)"
-		
-		out.push(toPush);
-		
-	});
-
-	return out.join('\n');
-}
-
-function files_in() {
-
-	//var input = (io['input'] && io['input']['files']) || [];
-	
-        
-	var filesIn = [];
-
-	var processInputFile =  function (file) {
-		//console.log(file)
-		//var name = Object.keys(file)[0];
-		//var content = file[name];
-		var data = fs.readFileSync(path.resolve(file.content),'utf8');	
-                
-		var Compress = require(path.resolve(program.compress));
-		var compress = Compress.compress;
-		var decompress = Compress.decompress;
-
-		var content = ((file.decompress) || (file.compress)) ? compress(data) : JSON.stringify(data);
-		
-		var dirname = path.dirname(file.name);
-		var basename = path.basename(file.name);
-		
-		filesIn.push("Module['FS_createDataFile']('"+ dirname +"', '"+ basename +"',Module['decompress']('"+ content +"'), true, true);");	
-	
-	};
-
-	if(io['input'] && io['input']['files']){
-
-		var input = io['input']['files'];
-		input.forEach(processInputFile);
-	}
-
-	return filesIn.join('\n');
-
-}
-
-function generated_code(){
-	var genetatedCode = fs.readFileSync(path.resolve(program.emscriptencode));
-	return genetatedCode;
-}
-
+process.stdin.pipe(cppstream(template,compress)).pipe(process.stdout);
 

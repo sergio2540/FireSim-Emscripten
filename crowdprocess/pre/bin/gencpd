@@ -1,17 +1,9 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var path = require('path');
-
-var LZString = require('../lib/LZString');
-
-var glob = require('glob');
-var async = require('async');
+var cpdstream = require('../lib/cpdstream');
 var es = require('event-stream');
-var JSONStream = require('JSONStream');
 var program = require('commander');
 
-var compress;
 
 program.version('0.0.0')
         .usage('[options] <file ...>')
@@ -19,85 +11,9 @@ program.version('0.0.0')
         .parse(process.argv);
 
 
+var compress = program.compress;
 
-function process_file(file,callback){
+es.pipeline(process.stdin,
+	    cpdstream(compress),
+	    process.stdout);
 
-	var filename = file.content;
-
-	//need better support for globs
-	
-	glob(filename, function(err,files){
-		
-		if(err) 
-			callback(err);
-		
-		async.each(files,function(filename){ 
-								fs.readFile(filename,'utf8',function(err,data){
-									if(err){
-										//console.log("a");
-										callback(err); //eachcallback
-									}
-									if(compress){
-										file.content = compress(data);
-										file.compress = true;
-									}
-									else  file.content = data;
-									
-									callback(null); //eachcallback
-								});
-				         }, function(err){
-								callback(null); //outside eachcallback
-				            });
-	
-
-	});
-
-	
-
-}
-
-
-function process_data_unit(obj,callback){
-
-	if((obj.input) && (obj.input.files)){
-		if(Array.isArray(obj.input.files)){
-			async.each(obj.input.files,process_file,function(err){
-				if(err) callback(err,null);
-				callback(null,obj);
-			});
-			
-		}
-	}
-
-	callback(null,obj);
-
-}
-
-//stdin: pre_data.json
-//stdout: data.json				
-es.pipeline(
-	process.stdin,
-	JSONStream.parse(),
-	es.map(function(obj,callback){
-
-              	var sourceCompress = program.compress;
-		
-		if(sourceCompress){
-			compress = require(path.resolve(sourceCompress)).compress;			
-		}
-		
-		//validate json
-		//or make this tests
-	 	//need else with error message
-		
-		async.each(obj,process_data_unit,function(err){
-				if(err) callback(err,null);
-				callback(null,obj);	
-		});
-			
-		
-	
-	}),
-    JSONStream.stringify(),
-	process.stdout
-);
