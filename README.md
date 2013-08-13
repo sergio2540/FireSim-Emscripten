@@ -7,6 +7,10 @@ FireSim compiled to JavaScript.
   * [Emscripten](https://github.com/kripken/emscripten/wiki/Tutorial)
   * [program-editor](https://github.com/crowdprocess/program-editor)
 
+##Recommended reading:
+ * [Mustache manual](http://mustache.github.io/mustache.5.html)
+ #####See: [template](https://github.com/sergio2540/FireSim-Emscripten/blob/master/Makefile)
+
 
 ##Usage:
 
