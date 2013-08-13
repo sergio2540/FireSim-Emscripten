@@ -3,27 +3,10 @@
 		 "compress" : "./lib/LZString.js",
 		 "data" : [{ 
 
-			  "input" : { 
-				      "argv" : [{  "arg" : "100",
-						   "pos" : "0"
-						}, 
-						{ 
-						  "arg" : "malcataSlope_100.grass",
-						  "pos" :  "4"
-				                },
-						{ 
-				                  "arg" : "malcataAspect_100.grass",
-						  "pos" : "5"
-						}],
-				      "files" : [ {
-						    "decompress" : true,
-						    "name" : "/malcataSlope_100.grass",
-						    "content" : "../../maps/malcataSlope_100.grass"
-						  },
-						  {
-						    "decompress" : true,
-						    "name" : "/malcataAspect_100.grass",
-						    "content" : "../../maps/malcataAspect_100.grass"
+			  "output" : { "files" : [ {
+						   
+						    "name" : "/ign.Map"
+						   
 						  }
 						],
 				    
