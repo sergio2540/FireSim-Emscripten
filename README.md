@@ -44,11 +44,11 @@ FireSim compiled to JavaScript.
 ####Run js with [program-editor](https://github.com/crowdprocess/program-editor): 
 
 ```bash
-   make run-editor`
+   make run-editor
 ```
 ####Run js with [crowdprocess-cli](https://github.com/CrowdProcess/crp-cli):
 ```bash
-   make run-io`
+   make run-io
 ```
 
 #####See: [Makefile](https://github.com/sergio2540/FireSim-Emscripten/blob/master/Makefile)
