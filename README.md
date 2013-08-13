@@ -10,9 +10,10 @@ FireSim compiled to JavaScript.
 ##Recommended reading:
  * [Mustache manual](http://mustache.github.io/mustache.5.html)
  * [Emscripten/wiki/Filesystem Guide](https://github.com/kripken/emscripten/wiki/Filesystem-Guide)
- * [FireSim@blog.crowdprocess](http://blog.crowdprocess.com/post/57794500198/crowdprocess-is-on-fire-wildfire-actually)
-
+  
 #####See: [template.mustache](https://github.com/sergio2540/FireSim-Emscripten/blob/master/crowdprocess/pre/template/template.mustache)
+
+ * [FireSim@blog.crowdprocess](http://blog.crowdprocess.com/post/57794500198/crowdprocess-is-on-fire-wildfire-actually)
 
 
 ##Usage:
@@ -27,13 +28,13 @@ FireSim compiled to JavaScript.
 ####Compile c code: 
 
 ```bash
-  make c CC=gcc
+  make c CC=cc
 ```
 ####Run c code: 
 
 ```bash
   make run-c
-  make run-c ARGV='100 5 1 135 malcataSlope_100.grass malcataAspect_100.grass '
+  make run-c ARGV='100 5 1 135 malcataSlope_100.grass malcataAspect_100.grass'
 ```
 ####Compile js code: 
 
