@@ -74,9 +74,9 @@ RESULTS_DIR= $(CROWDPROCESS_DIR)/results
 all: c cp
 
 install:
-	npm install -g https://github.com/CrowdProcess/program-editor/archive/master.tar.gz
-	npm install -g crowdprocess-cli
-	npm install -g
+	sudo npm install -g https://github.com/CrowdProcess/program-editor/archive/master.tar.gz
+	sudo npm install -g crowdprocess-cli
+	sudo npm install -g
 
 #tested:ok
 c: 
