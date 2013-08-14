@@ -23,8 +23,10 @@ FireSim compiled to JavaScript.
 ###Install: 
 
 ```bash
+  npm install -g https://github.com/CrowdProcess/program-editor/archive/master.tar.gz
+  npm install -g crowdprocess-cli
   cd ./FireSim-Emscripten
-  npm install
+  npm install -g
 ```
 
 ###Compile c code: 
