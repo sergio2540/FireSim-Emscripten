@@ -8,3 +8,5 @@ rm -rf ~/.emscripten_cache
 cd ./emscripten
 git checkout master
 ./emcc --help
+./emcc tests/hello_world.cpp
+node a.out.js
