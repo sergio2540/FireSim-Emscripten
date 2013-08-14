@@ -61,6 +61,7 @@ module.exports = function(sourceCompress){
 		JSONStream.parse(),
 		es.map(function(obj,callback){	
 		
+
 			if(sourceCompress){
 				compress = require(path.resolve(sourceCompress)).compress;			
 			}
@@ -71,6 +72,7 @@ module.exports = function(sourceCompress){
 		
 			async.each(obj,process_data_unit,function(err){
 					if(err) callback(err,null);
+			
 					callback(null,obj);	
 			});
 			

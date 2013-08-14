@@ -2,13 +2,24 @@
 		 "code" : "./build/firesim.js",
 		 "compress" : "./lib/LZString.js",
 		 "data" : [{ 
-
-			  "output" : { "files" : [ {
+				"input" : {
+					"argv"  : [     {  "arg" : "100",
+							   "pos" : "0"
+							}, 
+							{ 
+							  "arg" : "malcataSlope_100.grass",
+							  "pos" :  "4"
+						        },
+							{ 
+						          "arg" : "malcataAspect_100.grass",
+							  "pos" : "5"
+							}]
+				},
+				"output" : { "files" : [ {
 						   
 						    "name" : "/ign.Map"
 						   
-						  }
-						],
+						  }]
 				    
 				    }
 			}]

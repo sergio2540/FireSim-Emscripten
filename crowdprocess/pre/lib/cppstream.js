@@ -1,8 +1,10 @@
+var fs = require('fs');
+
 var es = require('event-stream');
 var async = require('async');
 var Mustache = require('mustache');
-var fs = require('fs');
 var JSONStream = require('JSONStream');
+
 var cpdstream = require('./cpdstream');
 
 

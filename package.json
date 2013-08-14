@@ -1,18 +1,20 @@
 {
-  "name": "FireSim-Emscripten",
+  "name": "firesim-emscripten",
   "version": "0.0.0",
   "description": "FireSim compiled to JavaScript.",
   "main": "generateProgram.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "files": [
-    "io.json",
-    "template.js",
-    "LZString.js"
-  ],
+  
+  "bin" : { "gencpd" : "./crowdprocess/pre/bin/gencpd",
+            "gencpp" : "./crowdprocess/pre/bin/gencpp"
+	  },
   "author": "Sérgio Alves",
   "license": "BSD",
+  "repository" : { "type" : "git",
+   		   "url" : "https://github.com/sergio2540/FireSim-Emscripten.git"
+  },
   "dependencies": {
     "commander": "~2.0.0",
     "glob": "~3.2.6",
@@ -23,8 +25,7 @@
     "event-stream": "~3.0.16",
     "levelup": "~0.13.0",
     "leveldown": "~0.7.0",
-    "mustache": "~0.7.2",
-    "crowdprocess-cli": "~0.7.8"
+    "mustache": "~0.7.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
