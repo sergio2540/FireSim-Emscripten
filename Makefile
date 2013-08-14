@@ -42,9 +42,9 @@ SETTINGS= -s ASMJS=1 -s INVOKE_RUN=0
 #node EXEC.js 1arg 2arg 3arg 4arg 5arg 6arg
 
 #1arg: Rows/Cols
-#2arg: moistures [fraction]
+#2arg: moistures [percentage]
 #3arg: windSpeed [m/s]
-#4arg: windDir [º from North]
+#4arg: windDir [º from North clockwise]
 #5arg: slope file name
 #6arg: aspect file name
 
@@ -63,9 +63,11 @@ MAPS= ./maps/*.grass
 #aspect file name = malcataAspect_100.grass 
 
 #From data.json 
-#windSpeed [m/s] = 
-#windDir [º from North] = 
-#moistures [fraction] = 
+
+#moistures [percentage] = 5
+#windSpeed [m/s] = 1
+#windDir [º from North] = 135
+
 
 DATA= ./data/data.json
 
@@ -73,10 +75,15 @@ RESULTS_DIR= $(CROWDPROCESS_DIR)/results
 
 all: c cp
 
-install:
+install : install-firesim
+
+install-firesim:
 	sudo npm install -g https://github.com/CrowdProcess/program-editor/archive/master.tar.gz
 	sudo npm install -g crowdprocess-cli
 	sudo npm install -g
+
+install-emscripten:
+	sh install-emscripten.sh
 
 #tested:ok
 c: 
