@@ -6,6 +6,7 @@ FireSim compiled to JavaScript.
 ##Requirements:
   * [Emscripten](https://github.com/kripken/emscripten/wiki/Tutorial)
   * [program-editor](https://github.com/crowdprocess/program-editor)
+  * [crowdprocess-cli](https://github.com/CrowdProcess/crp-cli)
 
 ##Recommended reading:
  * [Mustache manual](http://mustache.github.io/mustache.5.html)
