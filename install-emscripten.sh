@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-sudo apt-get install git subversion cmake build-essential default-jre scons
+sudo apt-get install git subversion cmake build-essential default-jre scons -y
 cd ~
 svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_32/final llvm32
 cd llvm32/tools
