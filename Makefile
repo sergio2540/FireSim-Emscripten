@@ -7,7 +7,7 @@ C_DIR= ./c
 CROWDPROCESS_DIR= ./crowdprocess
 
 #C compiler
-CC=cc
+CC=
 
 #Flags to C compiler
 CFLAGS=-O0 
@@ -25,7 +25,7 @@ EXEC=firesim
 #EMCC=path/to/emscripten/emcc
 #Example:
 #EMCC= /home/sergio/emscripten/emcc 
-EMCC=/home/sergio/emscripten/emcc 
+EMCC=
 
 #Flags for emscripten C compiler
 #-O<optimization level>
@@ -124,20 +124,6 @@ cp-out:
 	cat ./data/data_output.json | gencpd --compress ./lib/LZString > ../$(DATA) && \
 	cat ./view/view_input.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
-#!!!!not tested!!!!
-cp-compress: 
-	mkdir -p $(CROWDPROCESS_DIR)/build
-	mkdir -p $(CROWDPROCESS_DIR)/data
-	mkdir -p $(CROWDPROCESS_DIR)/pre/build
-	cd $(C_DIR) && \
-	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
-	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/data.json | gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view_compress.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
-
-
-
-
 
 run-editor:
 	@program-editor -p $(CROWDPROCESS_DIR)/build/$(EXEC).js
@@ -158,4 +144,4 @@ io:
 	node post/processResults.js $(RESULTS_DIR)/results.json
 
 
-.PHONY: all c run-c cp run-editor run-io install clean 
+.PHONY: all c run-c cp cp-in cp-out run-editor run-io install clean 
