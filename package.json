@@ -2,7 +2,6 @@
   "name": "firesim-emscripten",
   "version": "0.0.0",
   "description": "FireSim compiled to JavaScript.",
-  "main": "generateProgram.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

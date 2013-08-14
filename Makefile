@@ -127,9 +127,9 @@ cp-out:
 
 run-editor:
 	@program-editor -p $(CROWDPROCESS_DIR)/build/$(EXEC).js
+
 clean:
 	rm -rf $(C_DIR)/build
-	rm -rf $(JS_DIR)/build
 	rm -rf $(CROWDPROCESS_DIR)/build
 	rm -rf $(CROWDPROCESS_DIR)/data
 	rm -rf $(CROWDPROCESS_DIR)/pre/build
