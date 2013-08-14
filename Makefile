@@ -73,6 +73,11 @@ RESULTS_DIR= $(CROWDPROCESS_DIR)/results
 
 all: c cp
 
+install:
+	npm install -g https://github.com/CrowdProcess/program-editor/archive/master.tar.gz
+	npm install -g crowdprocess-cli
+	npm install -g
+
 #tested:ok
 c: 
 	mkdir -p $(C_DIR)/build/;
@@ -94,8 +99,8 @@ cp:
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
+	cat ./data/data.json | gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 #tested:ok
 cp-in: 
@@ -105,10 +110,10 @@ cp-in:
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/data_input.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view_output.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
+	cat ./data/data_input.json | gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view_output.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
-#!!!!not tested!!!!
+#tested:ok
 cp-out: 
 	mkdir -p $(CROWDPROCESS_DIR)/build
 	mkdir -p $(CROWDPROCESS_DIR)/data
@@ -116,8 +121,8 @@ cp-out:
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/data_output.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view_input.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
+	cat ./data/data_output.json | gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view_input.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 #!!!!not tested!!!!
 cp-compress: 
@@ -127,8 +132,8 @@ cp-compress:
 	cd $(C_DIR) && \
 	$(EMCC) $(EMCCFLAGS) $(SOURCES) $(SETTINGS) -o ../$(CROWDPROCESS_DIR)/pre/build/$(EXEC).js; 
 	cd $(CROWDPROCESS_DIR)/pre/ && \
-	cat ./data/data.json | ./bin/gencpd --compress ./lib/LZString > ../$(DATA) && \
-	cat ./view/view_compress.json | ./bin/gencpp --template ./template/template.mustache > ../build/$(EXEC).js
+	cat ./data/data.json | gencpd --compress ./lib/LZString > ../$(DATA) && \
+	cat ./view/view_compress.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 
 
@@ -140,20 +145,17 @@ clean:
 	rm -rf $(C_DIR)/build
 	rm -rf $(JS_DIR)/build
 	rm -rf $(CROWDPROCESS_DIR)/build
+	rm -rf $(CROWDPROCESS_DIR)/data
 	rm -rf $(CROWDPROCESS_DIR)/pre/build
 
 
 #!!!!not tested!!!!
-run-io: cp io process-results
+run-io: io process-results
 
-#!!!!not tested!!!!
-process-results:
-	node post/processResults.js $(RESULTS_DIR)/results.json
 io:
 	mkdir -p $(RESULTS_DIR)
-	@cat $(CROWDPROCESS_DIR)/$(DATA) | crowdprocess io -p $(CROWDPROCESS_DIR)/build/$(EXEC).js > $(RESULTS_DIR)/results.json
+	cat $(CROWDPROCESS_DIR)/$(DATA) | crowdprocess io -p $(CROWDPROCESS_DIR)/build/$(EXEC).js > $(RESULTS_DIR)/results.json
+	node post/processResults.js $(RESULTS_DIR)/results.json
 
 
-
-
-.PHONY: all c run-c cp run-io run-editor clean process-results io
+.PHONY: all c run-c cp run-editor run-io install clean 
