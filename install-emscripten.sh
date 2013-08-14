@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-sudo apt-get install git subversion cmake build-essential default-jre scons clang -y
+sudo apt-get install git subversion cmake build-essential default-jre scons clang-3.2 -y
 clang --version
 rm ~/.emscripten
 rm -rf ~/.emscripten_cache
