@@ -35,8 +35,8 @@ Module['decompress'] = module.exports.decompress;
 Module['preRun'].push(function () {
 
 if((data.input) && (data.input.files)){ 
-
-	data.input.files.forEach(function(file) {
+        var files = data.input.files;
+	files.forEach(function(file) {
  
 		var dirname = Module['dirname'](file.name);
 		var basename = Module['basename'](file.name);
@@ -84,8 +84,7 @@ if((data.input) && (data.input.files)){
 //ARGUMENTS
 Module['arguments'] = [];
 
-if((data.input) && (data.input.argv)){
-	//nao gosto do nome argv!!	
+if((data.input) && (data.input.argv)){	
 	var argv = data.input.argv;
 	argv.forEach(function(arg){
 		Module['arguments'][arg.pos] = arg.arg;
@@ -103,8 +102,8 @@ Module.callMain(Module['arguments']);
 
 
 if((data.output) && (data.output.files)){
-
-	data.output.files.forEach(function(file) {
+        var files = data.output.files;
+	files.forEach(function(file) {
    
 		var dirname = Module['dirname'](file.name);
 	
