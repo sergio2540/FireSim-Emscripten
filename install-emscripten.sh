@@ -7,8 +7,9 @@ cd ./emscripten
 git checkout master
 ./emcc --help
 cd ..
-make c cc=cc
+make c CC=cc
 make run-c
-make cp EMCC=./emscripten/emcc
+make cp EMCC=../emscripten/emcc
 cd ./crowdprocess/build 
+ls
 
