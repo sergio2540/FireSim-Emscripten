@@ -6,6 +6,8 @@ clang --version
 cd ./emscripten
 git checkout master
 ./emcc --help
-./emcc tests/hello_world.cpp
-ls
-node a.out.js
+make c cc=cc
+make run-c
+make cp EMCC=./emscripten/emcc
+cd ./crowdprocess/build 
+
