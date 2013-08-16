@@ -144,7 +144,7 @@ clean:
 
 
 #!!!!not tested!!!!
-run-io: io process-results
+run-io: io 
 
 io:
 	mkdir -p $(RESULTS_DIR)
