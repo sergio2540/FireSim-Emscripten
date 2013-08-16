@@ -6,6 +6,7 @@ clang --version
 cd ./emscripten
 git checkout master
 ./emcc --help
+cd ..
 make c cc=cc
 make run-c
 make cp EMCC=./emscripten/emcc
