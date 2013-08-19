@@ -1,3 +1,4 @@
+language: node_js
 node_js:
  -"0.8"
  -"0.10"
@@ -5,6 +6,7 @@ before_install:
  - clang --version
  - clang++ --version
  - git submodule update --init --recursive
+ - sh install-emscripten.sh
  - cd ./emscripten
  - git checkout master
  - ./emcc --help

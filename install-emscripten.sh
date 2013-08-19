@@ -4,12 +4,5 @@ sudo apt-get install cmake build-essential default-jre scons -y
 wget http://llvm.org/releases/3.2/clang+llvm-3.2-x86-linux-ubuntu-12.04.tar.gz
 tar -xvf clang+llvm-3.2-x86-linux-ubuntu-12.04.tar.gz
 cd clang+llvm-3.2-x86-linux-ubuntu-12.04
-sudo cp -R ./bin/* /usr/bin
-sudo cp -R ./include/* /usr/include
-sudo cp -R ./lib/* /usr/lib
-sudo cp -R ./lib/* /usr/share
-cd ..
-cd ./emscripten
-git checkout master
-./emcc --help
+export LLVM=./bin
 cd ..
