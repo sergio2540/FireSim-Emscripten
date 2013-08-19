@@ -8,5 +8,7 @@ before_install:
  - cd ./emscripten
  - git checkout master
  - ./emcc --help
+ - ./emcc -O2 tests/hello_world.c -o teste.js
+ - node teste.js
  - cd ..
  - make install
