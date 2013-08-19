@@ -133,14 +133,14 @@ cp-out:
 	cat ./view/view_input.json | gencpp --template ./template/template.mustache > ../build/$(EXEC).js
 
 
+test: c cp
+	mkdir -p ./tests
+	cp $(C_DIR)/build/stdout ./tests
+	cp $(C_DIR)/build/*.Map ./tests
+	
+	
 run-editor:
 	@program-editor -p $(CROWDPROCESS_DIR)/build/$(EXEC).js
-
-clean:
-	rm -rf $(C_DIR)/build
-	rm -rf $(CROWDPROCESS_DIR)/build
-	rm -rf $(CROWDPROCESS_DIR)/data
-	rm -rf $(CROWDPROCESS_DIR)/pre/build
 
 
 #!!!!not tested!!!!
@@ -151,5 +151,10 @@ io:
 	cat $(CROWDPROCESS_DIR)/$(DATA) | crowdprocess io -p $(CROWDPROCESS_DIR)/build/$(EXEC).js > $(RESULTS_DIR)/results.json
 	node post/processResults.js $(RESULTS_DIR)/results.json
 
+clean:
+	rm -rf $(C_DIR)/build
+	rm -rf $(CROWDPROCESS_DIR)/build
+	rm -rf $(CROWDPROCESS_DIR)/data
+	rm -rf $(CROWDPROCESS_DIR)/pre/build
 
 .PHONY: all c run-c cp cp-in cp-out run-editor run-io install clean 
