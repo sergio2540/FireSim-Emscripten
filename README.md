@@ -45,11 +45,17 @@ FireSim compiled to JavaScript.
 ```
 ###Generate data.json:
 
-######See: [Explain crowdprocess/pre/data](https://gist.github.com/sergio2540/b5b45f9e13e533ea056d)
+######See: 
+* [Explain crowdprocess/pre/data](https://gist.github.com/sergio2540/b5b45f9e13e533ea056d)
+* [revalidator](https://github.com/flatiron/revalidator)
+* [data.json schema](https://github.com/sergio2540/FireSim-Emscripten/blob/master/crowdprocess/pre/schema/data.schema.json)
 
 ###Generate program.js:
 
-######See: [Explain crowdprocess/view/data](https://gist.github.com/sergio2540/fac873fccde43bb98b44)
+######See: 
+* [Explain crowdprocess/view/data](https://gist.github.com/sergio2540/fac873fccde43bb98b44)
+* [revalidator](https://github.com/flatiron/revalidator)
+* [view.json schema](https://github.com/sergio2540/FireSim-Emscripten/blob/master/crowdprocess/pre/schema/view.schema.json)
        
 ###Run js with [program-editor](https://github.com/crowdprocess/program-editor): 
 
