@@ -76,15 +76,8 @@ RESULTS_DIR= $(CROWDPROCESS_DIR)/results
 
 all: c cp
 
-install : install-firesim
-
-install-firesim:
-	sudo npm install -g https://github.com/CrowdProcess/program-editor/archive/master.tar.gz
-	sudo npm install -g crowdprocess-cli
-	sudo npm install -g
-
-install-emscripten:
-	sh install-emscripten.sh
+install : 
+	./install.sh
 
 #tested:ok
 c: 
