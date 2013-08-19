@@ -1,4 +1,0 @@
-language: node
-
-before_install:
- - ./install-emscripten.sh
