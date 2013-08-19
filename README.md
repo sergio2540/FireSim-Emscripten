@@ -23,6 +23,7 @@ FireSim compiled to JavaScript.
 ###Install: 
 
 ```bash
+  git clone https://github.com/sergio2540/FireSim-Emscripten.git
   cd ./FireSim-Emscripten
   make install
 ```
