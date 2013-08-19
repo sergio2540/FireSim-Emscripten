@@ -1,38 +1,37 @@
-{ "properties" : {
-			"input" : {
-					"description" : "input object with properties argv and files",
-					"type" : "object",
-					"required" : false,
-					"properties" : {
-							"argv" : {
-										"description" : "array with arguments to c main.Example: ./main 1 -> argv : [{arg: 1,pos:0}]",
-										"type" : "array",
-										"required" : true
-				
-									 },
-							"files" : {
-										"description" : "array with files that you will read",
-										"type" : "array",
-										"required" : false
-									 }
-				    }
-			},
-			"output" : {
-						"description" : "output object with property files",
-						"type" : "object",
-						"required" : false,
-						"properties" : {
-							"files" : {
-								"description" : "array with files to export (. == /). Example: ./text.txt == /text.txt.",
-								"type" : "array"
-								
-									
-							}
-						}
-			}
-}
+{
+  "properties": {
+    "input": {
+      "description": "input object with properties argv and files",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "argv": {
+          "description": "array with arguments to c main.Example: ./main 1 -> argv : [{arg: 1,pos:0}]",
+          "type": "array",
+          "required": true
+        },
+        "files": {
+          "description": "array with files that you will read",
+          "type": "array",
+          "required": false
+        }
+      }
+    },
+    "output": {
+      "description": "output object with property files",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "files": {
+          "description": "array with files to export (. == /). Example: ./text.txt == /text.txt.",
+          "type": "array"
+        }
+      }
+    }
+  }
 }
 
 
 										
 
+									
