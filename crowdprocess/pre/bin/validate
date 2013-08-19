@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var validate = require('../lib/validate');
+var program = require('commander');
+
+
+function process_file(file){
+ try {
+ 	return JSON.parse(fs.readFileSync(file,'utf8')); 
+ }catch(e){
+  throw e;
+ }
+}
+
+program.version('0.0.0')
+    .usage('[options] <file ...>')
+    .option('-s, --schema <schema.json>','json-schema file',process_file)
+    .parse(process.argv);
+
+var schema = program.schema;
+
+process.stdin.pipe(validate(schema)).pipe(process.stdout);
+
