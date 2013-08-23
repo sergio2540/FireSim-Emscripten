@@ -16,6 +16,7 @@ FireSim compiled to JavaScript.
 
  * [HOWTO: Port a C/C++ Library to JavaScript (xml.js)@blog.mozakai](http://mozakai.blogspot.pt/2012/03/howto-port-cc-library-to-javascript.html)
  * [FireSim@blog.crowdprocess](http://blog.crowdprocess.com/post/57794500198/crowdprocess-is-on-fire-wildfire-actually)
+  * [FireLib User Manual](https://github.com/sergio2540/FireSim-Emscripten/blob/master/firelib.pdf)
 
 
 ##Usage:
