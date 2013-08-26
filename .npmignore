@@ -1,11 +1,17 @@
 .git*
 c
-audio
+maps
 emscripten
 example
 crowdprocess/lib
 crowdprocess/build
 crowdprocess/data
 crowdprocess/results
+Makefile
+firelib.ps
+firelib.pdf
+.travis.yml
+install.sh
+install-emscripten.sh
 
 
