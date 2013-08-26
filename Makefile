@@ -133,7 +133,7 @@ test: c cp
 	
 	
 run-editor:
-	@program-editor -p $(CROWDPROCESS_DIR)/build/$(EXEC).js
+	reagenzglas -p $(CROWDPROCESS_DIR)/build/$(EXEC).js
 
 
 #!!!!not tested!!!!
