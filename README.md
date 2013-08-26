@@ -16,7 +16,7 @@ FireSim compiled to JavaScript.
 
  * [HOWTO: Port a C/C++ Library to JavaScript (xml.js)@blog.mozakai](http://mozakai.blogspot.pt/2012/03/howto-port-cc-library-to-javascript.html)
  * [FireSim@blog.crowdprocess](http://blog.crowdprocess.com/post/57794500198/crowdprocess-is-on-fire-wildfire-actually)
-  * [FireLib User Manual](https://github.com/sergio2540/FireSim-Emscripten/blob/master/firelib.pdf)
+ * [FireLib User Manual](https://github.com/sergio2540/FireSim-Emscripten/blob/master/firelib.pdf)
 
 
 ##Usage:
@@ -34,17 +34,20 @@ FireSim compiled to JavaScript.
 ```bash
   make c CC=cc
 ```
+
 ###Run c code: 
 
 ```bash
   make run-c
   make run-c ARGV='100 5 1 135 malcataSlope_100.grass malcataAspect_100.grass'
 ```
+
 ###Compile js code: 
 
 ```bash 
   make cp EMCC=path/to/emscripten/emcc
 ```
+
 ###Generate data.json:
 
 ######See: 
@@ -59,12 +62,13 @@ FireSim compiled to JavaScript.
 * [revalidator](https://github.com/flatiron/revalidator)
 * [view.json schema](https://github.com/sergio2540/FireSim-Emscripten/blob/master/crowdprocess/pre/schema/view.schema.json)
        
-###Run js with [program-editor](https://github.com/crowdprocess/program-editor): 
+###Run js with [crp-reagenzglas](https://github.com/CrowdProcess/crp-reagenzglas): 
 
 ```bash
    make run-editor
 ```
 ###Run js with [crowdprocess-cli](https://github.com/CrowdProcess/crp-cli):
+
 ```bash
    make run-io
 ```
