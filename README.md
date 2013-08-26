@@ -5,7 +5,7 @@ FireSim compiled to JavaScript.
 
 ##Requirements:
   * [Emscripten](https://github.com/kripken/emscripten/wiki/Tutorial)
-  * [program-editor](https://github.com/crowdprocess/program-editor)
+  * [crp-reagenzglas](https://github.com/CrowdProcess/crp-reagenzglas)
   * [crowdprocess-cli](https://github.com/CrowdProcess/crp-cli)
 
 ##Recommended reading:
